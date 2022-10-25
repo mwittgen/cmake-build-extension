@@ -206,7 +206,10 @@ class BuildExtension(build_ext):
         ] + configure_args
 
         # 2. Compose CMake build command
-        build_command = ["cmake", "--build", build_folder] + build_args
+        if self.parallel is not None:
+            build_command = ["cmake","--parallel", str(self.cmake_parallel), "--build", build_folder] + build_args
+        else:
+            build_command = ["cmake", "--build", build_folder] + build_args
 
         # 3. Compose CMake install command
         install_command = ["cmake", "--install", build_folder]

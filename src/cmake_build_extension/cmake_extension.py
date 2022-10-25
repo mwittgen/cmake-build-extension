@@ -22,6 +22,7 @@ class CMakeExtension(Extension):
         cmake_depends_on: List of dependency packages containing required CMake projects.
         expose_binaries: List of binary paths to expose, relative to top-level directory.
         cmake_generator: The generator to be used by CMake. Defaults to Ninja.
+        cmake_parallel: Number of parallel build threads.
     """
 
     def __init__(
@@ -37,6 +38,7 @@ class CMakeExtension(Extension):
         cmake_depends_on: List[str] = (),
         expose_binaries: List[str] = (),
         cmake_generator: str = "Ninja",
+        cmake_parallel: int = None
     ):
 
         super().__init__(name=name, sources=[])
@@ -57,3 +59,4 @@ class CMakeExtension(Extension):
         self.cmake_component = cmake_component
         self.expose_binaries = expose_binaries
         self.cmake_generator = cmake_generator
+        self.cmake_parallel = cmake_parallel
