@@ -206,8 +206,8 @@ class BuildExtension(build_ext):
         ] + configure_args
 
         # 2. Compose CMake build command
-        if self.cmake_parallel is not None:
-            build_command = ["cmake","--parallel", str(self.cmake_parallel), "--build", build_folder] + build_args
+        if ext.cmake_parallel is not None:
+            build_command = ["cmake","--parallel", str(ext.cmake_parallel), "--build", build_folder] + build_args
         else:
             build_command = ["cmake", "--build", build_folder] + build_args
 
